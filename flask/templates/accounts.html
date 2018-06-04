@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)https://www.pythonanywhere.com/user/acow1/files/home/acow1/mysite/templates/accounts.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content.css"></head>
+
+<body><div id="StayFocusd-infobar" style="display:none;">
+    <img src="chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/common/img/eye_19x19_red.png">
+    <span id="StayFocusd-infobar-msg"></span>
+    <span id="StayFocusd-infobar-links">
+        <a id="StayFocusd-infobar-never-show">hide forever</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a id="StayFocusd-infobar-hide">hide once</a>
+    </span>
+</div>
+    <h2>Active</h2>
+
+    
+
+    {% if actives %}
+    {% for acc in actives %}
+        
+    {% endfor %}
+    {% else %}
+        
+    {% endif %}
+    <table>
+        <tbody><tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Latest Time</th>
+        </tr><tr>
+            <th> {{ acc[0] }} </th>
+            <th> {{ acc[1] }} </th>
+            <th> {{ acc[2] }} </th>
+        </tr><tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr></tbody></table>
+
+    <br>
+
+    <h2>Inactive</h2>
+
+    
+
+    {% if inactives %}
+    {% for acc in inactives %}
+        
+    {% endfor %}
+    {% else %}
+        
+    {% endif %}
+    <table>
+        <tbody><tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Latest Time</th>
+        </tr><tr>
+            <th> {{ acc[0] }} </th>
+            <th> {{ acc[1] }} </th>
+            <th> {{ acc[2] }} </th>
+        </tr><tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr></tbody></table>
+
+
+</body></html>
