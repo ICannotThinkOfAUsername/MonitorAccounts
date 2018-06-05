@@ -39,10 +39,10 @@
     {% else %}
         
     {% endif %}
-    <table>
+    <table id="active">
         <tbody><tr>
-            <th>Name</th>
             <th>ID</th>
+            <th>Name</th>
             <th>Latest Time</th>
         </tr><tr>
             <th> {{ acc[0] }} </th>
@@ -53,8 +53,6 @@
             <th></th>
             <th></th>
         </tr></tbody></table>
-
-    <br>
 
     <h2>Inactive</h2>
 
@@ -67,10 +65,10 @@
     {% else %}
         
     {% endif %}
-    <table>
+    <table id="inactive">
         <tbody><tr>
-            <th>Name</th>
             <th>ID</th>
+            <th>Name</th>
             <th>Latest Time</th>
         </tr><tr>
             <th> {{ acc[0] }} </th>
@@ -83,4 +81,20 @@
         </tr></tbody></table>
 
 
+
+<script>
+	var active = document.getElementById("active");
+	for (var i = 1, row; row = active.rows[i]; i++) {
+		if (row.cells[2].innerHTML > 0){
+			row.cells[2].innerHTML = new Date(row.cells[2].innerHTML * 1000).toLocaleString();
+		}
+	}
+
+	var inactive = document.getElementById("inactive");
+	for (var i = 1, row; row = inactive.rows[i]; i++) {
+		if (row.cells[2].innerHTML > 0){
+			row.cells[2].innerHTML = new Date(row.cells[2].innerHTML * 1000).toLocaleString();
+		}
+	}
+</script>
 </body></html>

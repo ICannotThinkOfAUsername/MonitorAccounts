@@ -5,8 +5,31 @@ from flask import render_template
 import time
 
 @app.route('/')
-def hello_world():
-    return 'Hi'
+def dashboard():
+    time_file = open('/home/acow1/mysite/time.txt', 'r')
+
+    try:
+        last_updated = int(time_file.read())
+    except:
+        return('Error getting integer from time_file')
+
+    if (last_updated < (int(time.time()) - 60)):
+        return('Monitoring script is not running!')
+
+    accs = Account.query.order_by(-Account.time).all()
+
+    if (len(accs) < 1):
+        return('No accounts found')
+
+    actives = []
+    inactives = []
+    for acc in accs:
+        if (acc.active):
+            actives.append((acc.id, acc.name, acc.time))
+        else:
+            inactives.append((acc.id, acc.name, acc.time))
+
+    return render_template('accounts.html', inactives=inactives, actives=actives)
 
 @app.route('/get/<string:id>')
 def get(id):
@@ -51,20 +74,3 @@ def delete(id):
         db.session.delete(acc)
         db.session.commit()
         return('Successfully deleted: ' + name)
-
-@app.route('/accounts')
-def accounts():
-    accs = Account.query.order_by(-Account.time).all()
-
-    if (len(accs) < 1):
-        return('No accounts found')
-
-    actives = []
-    inactives = []
-    for acc in accs:
-        if (acc.active):
-            actives.append((acc.id, acc.name, acc.time))
-        else:
-            inactives.append((acc.id, acc.name, acc.time))
-
-    return render_template('accounts.html', inactives=inactives, actives=actives)

@@ -6,14 +6,14 @@ import requests
 def send_discord(webhook_url, text):
     return requests.post(webhook_url, {"content" : text})
 
-def check_active_accounts(infinite = True, expire_time = 15, check_time = 10):
+def check_active_accounts(infinite = True, expire_after = 5, check_every = 10):
     while True:
         current_time = int(time.time())
         now_inactive_accounts = []
 
         active_accounts = Account.query.filter_by(active=True).all()
         for account in active_accounts:
-            if (account.time < (current_time - expire_time)):
+            if (account.time < (current_time - expire_after)):
                 now_inactive_accounts.append(account.name)
                 account.active = False
 
@@ -26,6 +26,10 @@ def check_active_accounts(infinite = True, expire_time = 15, check_time = 10):
         if not infinite:
             break
 
-        time.sleep(check_time)
+        time_file = open('/home/acow1/mysite/time.txt', 'w')
+        time_file.write(str(current_time))
+        time_file.close()
+
+        time.sleep(check_every)
 
 check_active_accounts()
