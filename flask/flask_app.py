@@ -24,14 +24,13 @@ def dashboard():
 
     actives = []
     inactives = []
-
     for acc in accs:
         #return(str(acc.id))
         if (acc.active):
             actives.append((acc.id, acc.name, acc.time))
         else:
             inactives.append((acc.id, acc.name, acc.time))
-    #return(str(accs[0].name))
+
     return render_template('accounts.html', inactives=inactives, actives=actives)
 
 @app.route('/get/<string:id>')
