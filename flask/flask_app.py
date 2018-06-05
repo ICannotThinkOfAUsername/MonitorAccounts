@@ -1,4 +1,5 @@
 from database import app, db, Account
+from config import pa_username
 
 from flask import render_template
 
@@ -6,7 +7,7 @@ import time
 
 @app.route('/')
 def dashboard():
-    time_file = open('/home/acow1/mysite/time.txt', 'r')
+    time_file = open('/home/'+pa_username+'/mysite/time.txt', 'r')
 
     try:
         last_updated = int(time_file.read())
@@ -23,12 +24,14 @@ def dashboard():
 
     actives = []
     inactives = []
+
     for acc in accs:
+        #return(str(acc.id))
         if (acc.active):
             actives.append((acc.id, acc.name, acc.time))
         else:
             inactives.append((acc.id, acc.name, acc.time))
-
+    #return(str(accs[0].name))
     return render_template('accounts.html', inactives=inactives, actives=actives)
 
 @app.route('/get/<string:id>')
