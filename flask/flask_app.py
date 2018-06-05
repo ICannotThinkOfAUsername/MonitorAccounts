@@ -25,7 +25,6 @@ def dashboard():
     actives = []
     inactives = []
     for acc in accs:
-        #return(str(acc.id))
         if (acc.active):
             actives.append((acc.id, acc.name, acc.time))
         else:
