@@ -1,5 +1,5 @@
 from database import db, Account
-from config import pa_username, webhook_url
+from config import pa_username, webhook_url, expire_after, check_every
 
 import time
 import requests
@@ -7,7 +7,7 @@ import requests
 def send_discord(webhook_url, text):
     return requests.post(webhook_url, {"content" : text})
 
-def check_active_accounts(infinite = True, expire_after = 5, check_every = 10):
+def check_active_accounts(infinite = True):
     while True:
         current_time = int(time.time())
         now_inactive_accounts = []

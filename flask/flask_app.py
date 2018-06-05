@@ -1,5 +1,5 @@
 from database import app, db, Account
-from config import pa_username
+from config import pa_username, check_every
 
 from flask import render_template
 
@@ -14,7 +14,7 @@ def dashboard():
     except:
         return('Error getting integer from time_file')
 
-    if (last_updated < (int(time.time()) - 60)):
+    if (last_updated < (int(time.time()) - (check_every * 3))):
         return('Monitoring script is not running!')
 
     accs = Account.query.order_by(-Account.time).all()
