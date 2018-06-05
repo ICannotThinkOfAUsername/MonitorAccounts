@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- saved from url=(0089)https://www.pythonanywhere.com/user/acow1/files/home/acow1/mysite/templates/accounts.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
 <style>
     table {
         font-family: arial, sans-serif;
@@ -18,69 +18,62 @@
         background-color: #dddddd;
     }
 </style>
-<link type="text/css" rel="stylesheet" href="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content.css"></head>
+</head>
 
-<body><div id="StayFocusd-infobar" style="display:none;">
-    <img src="chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/common/img/eye_19x19_red.png">
-    <span id="StayFocusd-infobar-msg"></span>
-    <span id="StayFocusd-infobar-links">
-        <a id="StayFocusd-infobar-never-show">hide forever</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <a id="StayFocusd-infobar-hide">hide once</a>
-    </span>
-</div>
+<body>
     <h2>Active</h2>
 
-    
+    <table id="active">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Latest Time</th>
+        </tr>
 
     {% if actives %}
     {% for acc in actives %}
-        
-    {% endfor %}
-    {% else %}
-        
-    {% endif %}
-    <table id="active">
-        <tbody><tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Latest Time</th>
-        </tr><tr>
+        <tr>
             <th> {{ acc[0] }} </th>
             <th> {{ acc[1] }} </th>
             <th> {{ acc[2] }} </th>
-        </tr><tr>
+        </tr>
+    {% endfor %}
+    {% else %}
+        <tr>
             <th></th>
             <th></th>
             <th></th>
-        </tr></tbody></table>
+        </tr>
+    {% endif %}
+    </table>
 
     <h2>Inactive</h2>
 
-    
-
-    {% if inactives %}
-    {% for acc in inactives %}
-        
-    {% endfor %}
-    {% else %}
-        
-    {% endif %}
     <table id="inactive">
-        <tbody><tr>
+        <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Latest Time</th>
-        </tr><tr>
+        </tr>
+
+    {% if inactives %}
+    {% for acc in inactives %}
+        <tr>
             <th> {{ acc[0] }} </th>
             <th> {{ acc[1] }} </th>
             <th> {{ acc[2] }} </th>
-        </tr><tr>
+        </tr>
+    {% endfor %}
+    {% else %}
+        <tr>
             <th></th>
             <th></th>
             <th></th>
-        </tr></tbody></table>
+        </tr>
+    {% endif %}
+    </table>
 
-
+</body>
 
 <script>
 	var active = document.getElementById("active");
@@ -97,4 +90,4 @@
 		}
 	}
 </script>
-</body></html>
+</html>
